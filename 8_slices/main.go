@@ -29,4 +29,10 @@ func main() {
 	sort.Ints(marks)
 	fmt.Println(sort.IntsAreSorted(marks))
 	fmt.Println(marks)
+
+	// removing a certain index in go
+	index := 2
+	var courses = []string{"react", "js", "swift", "c++", "ruby", "go"}
+	courses = append(courses[:index], courses[index+1:]...)
+	fmt.Println(courses)
 }
