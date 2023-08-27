@@ -20,7 +20,7 @@ type studentDetails struct {
 
 func main() {
 	fmt.Println("This is where we are converting all to json")
-	encodeJson()
+	DecodeJson()
 }
 
 func encodeJson() {
@@ -36,4 +36,38 @@ func encodeJson() {
 		panic(err)
 	}
 	fmt.Printf("%s\n", finalJson)
+}
+
+func DecodeJson() {
+	jsonDataWeb := []byte(`
+	{
+		"studentname": "Akhil",
+		"Branch": "CS",
+		"rollnum": 11,
+		"interests": [
+				"web-dev",
+				"software_development"
+		]
+    }
+	`)
+
+	var newStud studentDetails
+
+	checkValid := json.Valid(jsonDataWeb)
+
+	if checkValid {
+		fmt.Println("JSON was valid")
+		json.Unmarshal(jsonDataWeb, &newStud)
+		fmt.Printf("%#v\n", newStud)
+	} else {
+		fmt.Println("JSON is not valid")
+	}
+	var myOnlineData map[string]interface{}
+	json.Unmarshal(jsonDataWeb, &myOnlineData)
+	fmt.Printf("%#v\n", myOnlineData)
+
+	for k, v := range myOnlineData {
+		fmt.Printf("key is %v and value is %v and type is %T\n", k, v, v)
+	}
+
 }
