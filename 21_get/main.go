@@ -4,14 +4,15 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"net/url"
 	"strings"
 )
 
 func main() {
 	fmt.Println("HELlo")
-	link := "http://localhost:5050/post"
+	link := "http://localhost:5050/postform"
 	// HandleGetReq(link)
-	HandlePostReq(link)
+	HandlePostFormReq(link)
 }
 
 func HandleGetReq(url string) {
@@ -47,5 +48,23 @@ func HandlePostReq(url string) {
 	}
 	defer res.Body.Close()
 	content, _ := ioutil.ReadAll(res.Body)
+	fmt.Println(string(content))
+}
+func HandlePostFormReq(myUrl string) {
+
+	data := url.Values{}
+
+	data.Add("firstName", "Akhil")
+	data.Add("LastName", "B")
+	data.Add("email", "akhilb@go.dev")
+
+	response, err := http.PostForm(myUrl, data)
+	if err != nil {
+		panic(err)
+	}
+
+	defer response.Body.Close()
+
+	content, _ := ioutil.ReadAll(response.Body)
 	fmt.Println(string(content))
 }
