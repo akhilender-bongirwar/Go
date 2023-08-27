@@ -36,5 +36,4 @@ func main() {
 	}
 	newUrl := partOfUrl.String()
 	fmt.Println(newUrl)
-
 }
