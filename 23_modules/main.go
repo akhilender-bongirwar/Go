@@ -4,8 +4,6 @@ import (
 	"fmt"
 	"log"
 	"net/http"
-
-	"github.com/gorilla/mux"
 )
 
 func main() {
@@ -13,8 +11,8 @@ func main() {
 	//? go to the go path then to \pkg\mod there you will get cache where all the downloads are getting stored
 	//! gorilla mux path - cache\download\github.com\gorilla
 	greet()
-	r := mux.NewRouter()
-	r.HandleFunc("/", serveHome).Methods("GET")
+	// r := mux.NewRouter()
+	// r.HandleFunc("/", serveHome).Methods("GET")
 
 	log.Fatal(http.ListenAndServe(":4500", r))
 }
