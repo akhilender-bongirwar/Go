@@ -4,6 +4,10 @@ import (
 	"fmt"
 )
 
+type Number interface {
+	int64 | float64
+}
+
 func sumInt(m map[string]int64) int64 {
 	var sum int64
 	for _, v := range m {
@@ -22,7 +26,7 @@ func sumFloat(m map[string]float64) float64 {
 
 // instead of the above non generic functions, we can use the below generic function
 
-func sum[K comparable, T int64 | float64](m map[K]T) T {
+func sum[K comparable, T Number](m map[K]T) T {
 	var sum T
 	for _, v := range m {
 		sum += v
