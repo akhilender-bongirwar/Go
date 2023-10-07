@@ -28,6 +28,7 @@ func main() {
 	router.Run("localhost:5001")
 }
 
+// this is the light library for creating web servers in Go
 func getAllAlbums(c *gin.Context) {
 	c.IndentedJSON(http.StatusOK, albums)
 }
